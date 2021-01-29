@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import com.kota.pm.domain.datatype.VrstaArtikla;
 
 @Component("vrstaArtiklaConverter")
-public class VrstaArtiklaConverter implements Converter<VrstaArtikla> {
+public class VrstaArtiklaConverter implements Converter {
 
 	@Override
 	public VrstaArtikla getAsObject(FacesContext context, UIComponent component, String value) {
@@ -26,7 +26,7 @@ public class VrstaArtiklaConverter implements Converter<VrstaArtikla> {
 	}
 
 	@Override
-	public String getAsString(FacesContext context, UIComponent component, VrstaArtikla value) {
+	public String getAsString(FacesContext context, UIComponent component, Object value) {
 		if(value == null)
 			return null;
 		return value.toString();

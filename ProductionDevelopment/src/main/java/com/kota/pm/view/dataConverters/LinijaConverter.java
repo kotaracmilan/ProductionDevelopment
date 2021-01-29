@@ -11,7 +11,7 @@ import com.kota.pm.controller.KontrolerPodatakaRadnika;
 import com.kota.pm.domain.proizvodnja.Linija;
 
 @Component("linijaConverter")
-public class LinijaConverter implements Converter<Linija> {
+public class LinijaConverter implements Converter {
 	
 	@Autowired
 	private KontrolerPodatakaRadnika kpr;
@@ -32,8 +32,8 @@ public class LinijaConverter implements Converter<Linija> {
 	}
 
 	@Override
-	public String getAsString(FacesContext context, UIComponent component, Linija value) {
-		return String.valueOf(value.getId());
+	public String getAsString(FacesContext context, UIComponent component, Object value) {
+		return String.valueOf(((Linija)value).getId());
 	}
 
 }

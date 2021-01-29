@@ -28,8 +28,7 @@ public class KontrolerProizvodnihPodataka {
 	private NormativRepository normativRepo;
 	@Autowired
 	private NormativnaSastavnicaRepository normativnaSastavnicaRepo;
-	@Autowired
-	private CsvLoader csvLoader;
+
 	
 	public Proizvod getProizvodById(long id) {
 		Optional<Proizvod> pr = proizvodRepo.findById(id);
@@ -40,7 +39,7 @@ public class KontrolerProizvodnihPodataka {
 	
 	public List<Proizvod> findProizvodById(String query) {
 		Long id = Long.valueOf(query);
-		Pageable p = new PageRequest(0,10);
+		Pageable p = PageRequest.of(0,10);
 		return proizvodRepo.findAllByPartId(id, p);
 		
 	}
@@ -66,9 +65,6 @@ public class KontrolerProizvodnihPodataka {
 		return null;
 	}
 	
-	public List<Proizvod> ucitajProizvodIzFajla(File f) throws ClassNotFoundException, FileNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, IOException {
-		return csvLoader.loadFromCsv(f, Proizvod.class);
-	}
 	
 	public void saveNormativ(Normativ n) {
 		normativRepo.save(n);

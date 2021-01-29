@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import com.kota.pm.domain.datatype.Status;
 
 @Component("statusConverter")
-public class StatusConverter implements Converter<Status> {
+public class StatusConverter implements Converter {
 
 	@Override
 	public Status getAsObject(FacesContext context, UIComponent component, String value) {
@@ -24,7 +24,7 @@ public class StatusConverter implements Converter<Status> {
 	}
 
 	@Override
-	public String getAsString(FacesContext context, UIComponent component, Status value) {	
+	public String getAsString(FacesContext context, UIComponent component, Object value) {	
 		return value.toString();
 	}
 

@@ -11,7 +11,7 @@ import com.kota.pm.controller.KontrolerProizvodnihPodataka;
 import com.kota.pm.domain.product.Normativ;
 
 @Component("normativConverter")
-public class NormativConverter implements Converter<Normativ> {
+public class NormativConverter implements Converter {
 
 	@Autowired
 	public KontrolerProizvodnihPodataka kpp;
@@ -24,10 +24,10 @@ public class NormativConverter implements Converter<Normativ> {
 	}
 
 	@Override
-	public String getAsString(FacesContext context, UIComponent component, Normativ value) {
+	public String getAsString(FacesContext context, UIComponent component, Object value) {
 		if(value == null)
 			return null;
-		return String.valueOf(value.getId());
+		return String.valueOf(((Normativ)value).getId());
 	}
 
 }

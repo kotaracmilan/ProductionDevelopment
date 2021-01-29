@@ -11,7 +11,7 @@ import com.kota.pm.controller.KontrolerPodatakaRadnika;
 import com.kota.pm.domain.datatype.Pogon;
 
 @Controller("pogonConverter")
-public class PogonConverter implements Converter<Pogon> {
+public class PogonConverter implements Converter {
 	
 	@Autowired
 	transient public KontrolerPodatakaRadnika kpr;
@@ -31,8 +31,8 @@ public class PogonConverter implements Converter<Pogon> {
 	}
 
 	@Override
-	public String getAsString(FacesContext context, UIComponent component, Pogon value) {
-		return String.valueOf(value.getId());
+	public String getAsString(FacesContext context, UIComponent component, Object value) {
+		return String.valueOf(((Pogon)value).getId());
 	}
 
 }

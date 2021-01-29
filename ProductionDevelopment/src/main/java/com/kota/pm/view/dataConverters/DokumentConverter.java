@@ -11,7 +11,7 @@ import com.kota.pm.controller.KontrolerPermanentnihPodataka;
 import com.kota.pm.domain.datatype.Dokument;
 
 @Component("dokumentConverter")
-public class DokumentConverter implements Converter<Dokument> {
+public class DokumentConverter implements Converter {
 
 	@Autowired
 	private KontrolerPermanentnihPodataka kpp;
@@ -25,10 +25,10 @@ public class DokumentConverter implements Converter<Dokument> {
 	}
 
 	@Override
-	public String getAsString(FacesContext context, UIComponent component, Dokument value) {
+	public String getAsString(FacesContext context, UIComponent component, Object value) {
 		if(value == null)
 			return null;
-		return String.valueOf(value.getId());
+		return String.valueOf(((Dokument)value).getId());
 	}
 
 }

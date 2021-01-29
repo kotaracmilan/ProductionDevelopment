@@ -11,7 +11,7 @@ import com.kota.pm.controller.KontrolerPodatakaRadnika;
 import com.kota.pm.domain.zaposleni.Poslovi;
 
 @Component("posaoConverter")
-public class PosaoConverter implements Converter<Poslovi> {
+public class PosaoConverter implements Converter {
 	
 	@Autowired
 	KontrolerPodatakaRadnika kpr;
@@ -31,9 +31,9 @@ public class PosaoConverter implements Converter<Poslovi> {
 	}
 
 	@Override
-	public String getAsString(FacesContext context, UIComponent component, Poslovi value) {
+	public String getAsString(FacesContext context, UIComponent component, Object value) {
 		
-		return String.valueOf(value.getId());
+		return String.valueOf(((Poslovi)value).getId());
 	}
 
 }

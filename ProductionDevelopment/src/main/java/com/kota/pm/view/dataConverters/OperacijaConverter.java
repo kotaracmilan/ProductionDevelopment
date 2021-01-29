@@ -13,7 +13,7 @@ import com.kota.pm.controller.KontrolerPermanentnihPodataka;
 import com.kota.pm.domain.datatype.Operacija;
 
 @Component("operacijaKonverter")
-public class OperacijaConverter implements Converter<Operacija> {
+public class OperacijaConverter implements Converter {
 
 	@Autowired
 	private KontrolerPermanentnihPodataka kpp;
@@ -31,10 +31,10 @@ public class OperacijaConverter implements Converter<Operacija> {
 	}
 
 	@Override
-	public String getAsString(FacesContext context, UIComponent component, Operacija value) {
+	public String getAsString(FacesContext context, UIComponent component, Object value) {
 		if(value == null)
 			return null;
-		return value.getNaziv();
+		return ((Operacija)value).getNaziv();
 	}
 
 }

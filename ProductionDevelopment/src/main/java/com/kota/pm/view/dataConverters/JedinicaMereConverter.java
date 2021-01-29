@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import com.kota.pm.domain.datatype.JedinicaMere;
 
 @Component("jedinicaMereConverter")
-public class JedinicaMereConverter implements Converter<JedinicaMere> {
+public class JedinicaMereConverter implements Converter {
 
 	@Override
 	public JedinicaMere getAsObject(FacesContext context, UIComponent component, String value) {
@@ -24,10 +24,10 @@ public class JedinicaMereConverter implements Converter<JedinicaMere> {
 	}
 
 	@Override
-	public String getAsString(FacesContext context, UIComponent component, JedinicaMere value) {
+	public String getAsString(FacesContext context, UIComponent component, Object value) {
 		if(value == null)
 			return null;
-		return value.name();
+		return ((JedinicaMere)value).name();
 	}
 
 }

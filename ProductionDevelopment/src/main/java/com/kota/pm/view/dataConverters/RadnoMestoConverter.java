@@ -10,10 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.kota.pm.controller.KontrolerPodatakaRadnika;
+import com.kota.pm.domain.zaposleni.Poslovi;
 import com.kota.pm.domain.zaposleni.RadnoMesto;
 
 @Component("radnoMestoConverter")
-public class RadnoMestoConverter implements Converter<RadnoMesto>, Serializable {
+public class RadnoMestoConverter implements Converter, Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -35,8 +36,8 @@ public class RadnoMestoConverter implements Converter<RadnoMesto>, Serializable 
 	}
 
 	@Override
-	public String getAsString(FacesContext context, UIComponent component, RadnoMesto value) {
-		return String.valueOf(value.getId());
+	public String getAsString(FacesContext context, UIComponent component, Object value) {
+		return String.valueOf(((RadnoMesto)value).getId());
 	}
 
 }

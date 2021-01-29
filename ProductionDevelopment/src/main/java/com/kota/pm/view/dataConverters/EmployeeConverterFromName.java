@@ -11,7 +11,7 @@ import com.kota.pm.controller.KontrolerPodatakaRadnika;
 import com.kota.pm.domain.zaposleni.Employee;
 
 @Component("employeeConverterFromName")
-public class EmployeeConverterFromName implements Converter<Employee> {
+public class EmployeeConverterFromName implements Converter {
 	
 	@Autowired
 	private KontrolerPodatakaRadnika kpr;
@@ -25,9 +25,10 @@ public class EmployeeConverterFromName implements Converter<Employee> {
 	}
 
 	@Override
-	public String getAsString(FacesContext context, UIComponent component, Employee value) {
-		if(value==null)
+	public String getAsString(FacesContext context, UIComponent component, Object value1) {
+		if(value1==null)
 			return null;
+		Employee value = (Employee) value1;
 		return value.getIme() + " " + value.getPrezime();
 	}
 

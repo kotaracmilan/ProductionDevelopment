@@ -11,10 +11,11 @@ import org.springframework.stereotype.Component;
 
 import com.kota.pm.controller.KontrolerPodatakaRadnika;
 import com.kota.pm.domain.datatype.Poslodavac;
+import com.kota.pm.domain.zaposleni.Poslovi;
 
 //@Service
 @Component(value="poslodavacConverter")
-public class PoslodavacConverter implements Converter<Poslodavac>, Serializable {
+public class PoslodavacConverter implements Converter, Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Autowired
@@ -36,8 +37,8 @@ public class PoslodavacConverter implements Converter<Poslodavac>, Serializable 
 	}
 
 	@Override
-	public String getAsString(FacesContext context, UIComponent component, Poslodavac value) {
-		return String.valueOf(value.getId());
+	public String getAsString(FacesContext context, UIComponent component, Object value) {
+		return String.valueOf(((Poslodavac)value).getId());
 	}
 
 }

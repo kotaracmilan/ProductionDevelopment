@@ -92,7 +92,7 @@ public class KontrolerPodatakaRadnika {
 		return employeeRepo.findAll(p).getContent();
 	}
 	public List<Employee> listaZaposlenih(String q) {
-		Pageable p = new PageRequest(0, 10);
+		Pageable p = PageRequest.of(0, 10);
 		return employeeRepo.findForAutocomplete(q, p);
 	}
 	

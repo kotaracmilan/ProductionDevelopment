@@ -3,6 +3,7 @@ package com.kota.pm.view.datamodels;
 import java.util.List;
 import java.util.Map;
 
+import org.primefaces.model.FilterMeta;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SelectableDataModel;
 import org.primefaces.model.SortMeta;
@@ -20,26 +21,21 @@ public class ProizvodLazyLoad extends LazyDataModel<Proizvod> implements Selecta
 
 	private static final long serialVersionUID = -8439240131325695785L;
 
-	@Autowired
 	private KontrolerProizvodnihPodataka kpp;
+
 	
-	@Override
-	public List<Proizvod> load(int first, int pageSize, String sortField, 
-			SortOrder sortOrder, Map<String, Object> filter) {
-		
-		Pageable page = new PageRequest(first/pageSize,pageSize);
-		return kpp.findAllProizvod(page);
+	
+	public ProizvodLazyLoad(KontrolerProizvodnihPodataka kpp) {
+		super();
+		this.kpp = kpp;
 	}
-	
+
+
 	@Override
 	public int getRowCount() {
 		return Math.toIntExact(kpp.countProizvod());
 	}
-	
-	@Override
-	public Integer getRowKey(Proizvod proizvod) {
-		return Math.toIntExact(proizvod.getId());
-	}
+
 
 	@Override
 	public Proizvod getRowData(String rowKey) {
@@ -47,9 +43,16 @@ public class ProizvodLazyLoad extends LazyDataModel<Proizvod> implements Selecta
 		
 	}
 
+
 	@Override
-	public List<Proizvod> load(int first, int pageSize, List<SortMeta> multiSortMeta, Map<String, Object> filters) {
-		Pageable page = new PageRequest(first,pageSize);
+	public String getRowKey(Proizvod object) {
+		return String.valueOf(object.getId());
+	}
+
+	@Override
+	public List<Proizvod> load(int first, int pageSize, Map<String, SortMeta> sortBy,
+			Map<String, FilterMeta> filterBy) {
+		Pageable page = PageRequest.of(first/pageSize,pageSize);
 		return kpp.findAllProizvod(page);
 	}
 	

@@ -55,7 +55,7 @@ public class EmployeeRest {
 	 */
 	@GetMapping("/list/{count}/{start}")
 	public List<Employee> traziZaposleneOdDo(@PathVariable("start") Integer start, @PathVariable("count") Integer count) {
-		Pageable pageable = new PageRequest(start, count);
+		Pageable pageable = PageRequest.of(start, count);
 		return employeeRepository.findAll(pageable).getContent();
 	}
 	
@@ -67,7 +67,7 @@ public class EmployeeRest {
 	 */
 	@GetMapping("/listForAutocomplete/{tekst}")
 	public List<Employee> autocompleteZaposlenog(@PathVariable("tekst") String s) {
-		Pageable p = new PageRequest(0,5);
+		Pageable p = PageRequest.of(0,5);
 		 return employeeRepository.findForAutocomplete(s, p);
 	}
 	

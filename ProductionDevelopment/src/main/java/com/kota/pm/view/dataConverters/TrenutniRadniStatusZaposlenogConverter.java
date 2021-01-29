@@ -9,9 +9,10 @@ import javax.faces.convert.Converter;
 import org.springframework.stereotype.Component;
 
 import com.kota.pm.domain.datatype.TrenutniRadniStatusZaposlenog;
+import com.kota.pm.domain.zaposleni.Poslovi;
 
 @Component("trenutniStatusConverter")
-public class TrenutniRadniStatusZaposlenogConverter implements Converter<TrenutniRadniStatusZaposlenog>, Serializable {
+public class TrenutniRadniStatusZaposlenogConverter implements Converter, Serializable {
 
 	@Override
 	public TrenutniRadniStatusZaposlenog getAsObject(FacesContext context, UIComponent component, String value) {
@@ -21,8 +22,8 @@ public class TrenutniRadniStatusZaposlenogConverter implements Converter<Trenutn
 	}
 
 	@Override
-	public String getAsString(FacesContext context, UIComponent component, TrenutniRadniStatusZaposlenog value) {
-		return String.valueOf(value.getId());
+	public String getAsString(FacesContext context, UIComponent component, Object value) {
+		return String.valueOf(((TrenutniRadniStatusZaposlenog)value).getId());
 	}
 
 }

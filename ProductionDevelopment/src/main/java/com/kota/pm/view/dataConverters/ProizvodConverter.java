@@ -9,9 +9,10 @@ import org.springframework.stereotype.Component;
 
 import com.kota.pm.controller.KontrolerProizvodnihPodataka;
 import com.kota.pm.domain.product.Proizvod;
+import com.kota.pm.domain.zaposleni.Poslovi;
 
 @Component("proizvodConverter")
-public class ProizvodConverter implements Converter<Proizvod> {
+public class ProizvodConverter implements Converter {
 
 	@Autowired
 	private KontrolerProizvodnihPodataka kpp;
@@ -24,10 +25,10 @@ public class ProizvodConverter implements Converter<Proizvod> {
 	}
 
 	@Override
-	public String getAsString(FacesContext context, UIComponent component, Proizvod value) {
+	public String getAsString(FacesContext context, UIComponent component, Object value) {
 		if(value==null)
 			return null;
-		return String.valueOf(value.getId());
+		return String.valueOf(((Proizvod)value).getId());
 	}
 
 }
